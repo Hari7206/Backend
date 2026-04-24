@@ -1,9 +1,10 @@
+require("dotenv").config()
 const app = require("./src/app")
 const connectToDb = require("./src/config/database")
-require("dotenv").config()
 
 connectToDb()
 
-app.listen(3000, () => {
-  console.log("app is listening")
+app.listen(3000 , ()=>{
+    console.log("app is listning");
+    
 })
