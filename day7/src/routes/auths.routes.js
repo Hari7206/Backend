@@ -32,7 +32,7 @@ authRouter.post("/register", async (req, res) => {
 
 res.cookie("jwt_token" , token)
 
-    res.status(201).json({
+    res.status(201). ({
         message: "user registered",
         user,
         token
