@@ -1,8 +1,6 @@
 import axios from "axios";
 
-
-export let api = axios.create({
-  baseURL: "https://api.team-sync.space",
-  withCredentials: true,
+export const api = axios.create({
+  baseURL: "https://reqres.in/api",
+  headers: { "Content-Type": "application/json" },
 });
-
