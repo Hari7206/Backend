@@ -1,10 +1,8 @@
 import Link from "next/link";
 
-// components/ProductCard.jsx
 export default function ProductCard({ product }) {
   const { title, price, description, category, image, rating } = product;
 
-  // Build star array based on rating.rate
   const stars = Array.from({ length: 5 }, (_, i) => {
     const value = i + 1;
     if (rating.rate >= value) return "full";
@@ -13,19 +11,19 @@ export default function ProductCard({ product }) {
   });
 
   return (
-    <div className="w-full max-w-sm bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gray-100">
+    <div className="w-full max-w-sm bg-card text-card-foreground rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-border">
       {/* Image + Badge */}
       <div className="p-4 pb-0 flex justify-center">
-        <div className="relative w-full h-64 bg-gray-50 rounded-xl overflow-hidden flex items-center justify-center">
-          <Link href={`/products/${product.id}`}>
-          <img
-            src={image}
-            alt={title}
-            loading="lazy"
-            className="h-full w-auto object-contain transition-transform duration-300 hover:scale-105"
-          />
+        <div className="relative w-full h-64 bg-muted rounded-xl overflow-hidden flex items-center justify-center">
+          <Link href={`/products/${product.id}`} className="h-full w-full flex items-center justify-center">
+            <img
+              src={image}
+              alt={title}
+              loading="lazy"
+              className="h-full w-auto object-contain transition-transform duration-300 hover:scale-105"
+            />
           </Link>
-          <span className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-xs font-semibold text-gray-700 px-3 py-1 rounded-full shadow-sm border border-gray-200/60">
+          <span className="absolute top-3 left-3 bg-background/90 backdrop-blur-sm text-xs font-semibold text-foreground px-3 py-1 rounded-full shadow-sm border border-border">
             {category}
           </span>
         </div>
@@ -33,7 +31,7 @@ export default function ProductCard({ product }) {
 
       {/* Content */}
       <div className="p-5 flex flex-col gap-3">
-        <h2 className="text-lg font-bold text-gray-800 leading-snug line-clamp-2">
+        <h2 className="text-lg font-bold text-card-foreground leading-snug line-clamp-2">
           {title}
         </h2>
 
@@ -57,7 +55,7 @@ export default function ProductCard({ product }) {
                       <defs>
                         <linearGradient id={`half-${i}`}>
                           <stop offset="50%" stopColor="currentColor" />
-                          <stop offset="50%" stopColor="#e5e7eb" />
+                          <stop offset="50%" stopColor="var(--muted)" />
                         </linearGradient>
                       </defs>
                       <path
@@ -68,30 +66,30 @@ export default function ProductCard({ product }) {
                   )}
                   {type === "empty" && (
                     <path
-                      fill="#e5e7eb"
+                      className="fill-muted"
                       d="M12 17.27l5.18 3.13-1.37-5.9 4.6-3.98-6.05-.52L12 4.5 9.64 9.99l-6.05.52 4.6 3.98-1.37 5.9L12 17.27z"
                     />
                   )}
                 </svg>
               ))}
             </div>
-            <span className="text-xs font-medium text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
+            <span className="text-xs font-medium text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
               {rating.rate} ({rating.count})
             </span>
           </div>
 
-          <span className="text-xl font-extrabold text-gray-900 tracking-tight">
+          <span className="text-xl font-extrabold text-foreground tracking-tight">
             ${price.toFixed(2)}
           </span>
         </div>
 
         {/* Description */}
-        <p className="text-sm text-gray-600 leading-relaxed line-clamp-3">
+        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
           {description}
         </p>
 
         {/* Add to cart */}
-        <button className="mt-2 w-full bg-gray-900 hover:bg-gray-800 text-white font-semibold py-2.5 px-4 rounded-xl transition-colors duration-200 flex items-center justify-center gap-2 text-sm">
+        <button className="mt-2 w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold py-2.5 px-4 rounded-xl transition-colors duration-200 flex items-center justify-center gap-2 text-sm">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

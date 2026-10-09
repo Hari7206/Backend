@@ -1,6 +1,7 @@
 
 import Navbar from "@/components/Navbar";
 import "./globals.css";
+import { ThemeProvider } from "@/components/themeProvider";
 
 export const metadata = {
   title: "Create Next App",
@@ -10,13 +11,23 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html
+      suppressHydrationWarning
       lang="en"
       className={`h-full antialiased`}
     >
       <body className="h-screen gap-5 flex flex-col">
-        <Navbar/>
-       <div className="px-8"> {children}</div>
-        </body>
+
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Navbar />
+          <div className="px-8">{children}</div>
+        </ThemeProvider>
+
+      </body>
     </html>
   );
 }
